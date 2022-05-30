@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="flotilla" id="Project-942" database="Sqlite" >
+	<schema name="Default" >
+		<table name="tbl_asignaciones" prior="tbl_" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="id_vehiculo" type="INTEGER" jt="4" mandatory="y" />
+			<column name="id_conductor" type="INTEGER" jt="4" mandatory="y" />
+			<column name="fecha_expiracion" type="DATE" jt="91" />
+			<index name="pk_tbl_asignaciones" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_tbl_asignaciones_id_vehiculo" unique="UNIQUE_KEY" >
+				<column name="id_vehiculo" />
+			</index>
+			<index name="unq_tbl_asignaciones_id_conductor" unique="UNIQUE_KEY" >
+				<column name="id_conductor" />
+			</index>
+		</table>
+		<table name="tbl_conductores" prior="tbl_users" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="nombre" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="edad" type="INTEGER" jt="4" />
+			<column name="direccion" type="VARCHAR" length="80" jt="12" />
+			<index name="pk_Tbl" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_tbl_conductores" to_schema="Default" to_table="tbl_asignaciones" >
+				<fk_column name="id" pk="id_conductor" />
+			</fk>
+		</table>
+		<table name="tbl_fallas" prior="Tbl" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="descrip" type="TEXT" jt="-1" mandatory="y" />
+			<column name="id_vehiculo" type="INTEGER" jt="4" mandatory="y" />
+			<column name="id_mantenimiento" type="INTEGER" jt="4" mandatory="y" />
+			<column name="id_mecanico" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_tbl_fallas" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_tbl_fallas_descrip" unique="UNIQUE_KEY" >
+				<column name="descrip" />
+			</index>
+			<index name="unq_tbl_fallas_id_vehiculo" unique="UNIQUE_KEY" >
+				<column name="id_vehiculo" />
+			</index>
+			<index name="unq_tbl_fallas_id_mantenimiento" unique="UNIQUE_KEY" >
+				<column name="id_mantenimiento" />
+			</index>
+			<index name="unq_tbl_fallas_id_mecanico" unique="UNIQUE_KEY" >
+				<column name="id_mecanico" />
+			</index>
+		</table>
+		<table name="tbl_mantenimientos" prior="Tbl" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="fecha_mnto" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<index name="pk_tbl_mantenimientos" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_tbl_mantenimientos" to_schema="Default" to_table="tbl_fallas" >
+				<fk_column name="id" pk="id_mantenimiento" />
+			</fk>
+		</table>
+		<table name="tbl_mecanicos" prior="tbl_mecanico" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="nombre" type="VARCHAR" length="50" jt="12" />
+			<index name="pk_tbl_mecanicos" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_tbl_mecanicos" to_schema="Default" to_table="tbl_fallas" >
+				<fk_column name="id" pk="id_mecanico" />
+			</fk>
+		</table>
+		<table name="tbl_vehiculos" prior="tbl_" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="modelo" type="VARCHAR" length="30" jt="12" mandatory="y" />
+			<column name="marca" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<column name="annio" type="INTEGER" jt="4" />
+			<column name="placas" type="VARCHAR" length="10" jt="12" />
+			<index name="pk_tbl_vehiculos" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_tbl_vehiculos" to_schema="Default" to_table="tbl_fallas" >
+				<fk_column name="id" pk="id_vehiculo" />
+			</fk>
+			<fk name="fk_tbl_vehiculos_0" to_schema="Default" to_table="tbl_asignaciones" >
+				<fk_column name="id" pk="id_vehiculo" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-ba8" show_relation="columns" >
+		<entity schema="Default" name="tbl_asignaciones" color="C1D8EE" x="80" y="368" />
+		<entity schema="Default" name="tbl_conductores" color="C1D8EE" x="48" y="176" />
+		<entity schema="Default" name="tbl_fallas" color="C1D8EE" x="320" y="272" />
+		<entity schema="Default" name="tbl_mantenimientos" color="C1D8EE" x="320" y="144" />
+		<entity schema="Default" name="tbl_mecanicos" color="C1D8EE" x="320" y="432" />
+		<entity schema="Default" name="tbl_vehiculos" color="C1D8EE" x="176" y="176" />
+		<callout x="576" y="48" pointer="Round" >
+			<comment><![CDATA[Add tables to the layout by drag & drop from the project structure.
+Currently, the model is in offline mode, which means new tables will be created only in the model file.
+Drop this callout from its context menu.]]></comment>
+		</callout>
+	</layout>
+</project>
