@@ -7,7 +7,7 @@ Test de EC
 
 - archivo test_ec.dbs (DBSchema)
 
-  ![esquema_db](C:\Users\Usuario\Downloads\esquema_db.png)
+  ver archivo: esquema_db.png
 
 - Desde mi prespectiva, es la primera vez que busco algo respecto a una aplicación para flotillas, no tengo mucho que agregar, 
 
@@ -40,9 +40,10 @@ Test de EC
   - Ejecutando Flake8, tenemos que:
 
   - C:\Source\Python\test_ec\env\Scripts/python -m flake8 --max-line-length=130 --exclude env,migrations C:\Source\Python\test_ec
-    C:\Source\Python\test_ec\test_orm.py:23:1: E303 too many blank lines (3)
-    C:\Source\Python\test_ec\test_orm.py:35:1: E303 too many blank lines (3)
-    C:\Source\Python\test_ec\test_orm.py:53:28: E231 missing whitespace after ','
+    C:\Source\Python\test_ec\orm.py:23:1: E303 too many blank lines (3)
+    C:\Source\Python\test_ec\orm.py:35:1: E303 too many blank lines (3)
+    C:\Source\Python\test_ec\orm.py:53:28: E231 missing whitespace after ','
+    C:\Source\Python\test_ec\test_secA.py:8:1: E302 expected 2 blank lines, found 1
 
     Process finished with exit code 1
 
